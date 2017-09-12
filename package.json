@@ -1,6 +1,6 @@
 {
   "name": "ng2-meta",
-  "description": "Dynamic meta tags and SEO in Angular2",
+  "description": "Dynamic meta tags and SEO in Angular2 ui router",
   "version": "2.0.3",
   "scripts": {
     "lint": "tslint src/**/*.ts",
@@ -9,11 +9,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vinaygopinath/ng2-meta"
+    "url": "https://github.com/lenseg/ng2-meta"
   },
   "author": {
-    "name": "Vinay Gopinath",
-    "email": "vinay@vinaygopinath.me"
+    "name": "Anton Stepanenkov",
+    "email": "Lenseg1@gmail.com"
   },
   "keywords": [
     "angular",
@@ -24,7 +24,7 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/vinaygopinath/ng2-meta/issues"
+    "url": "https://github.com/lenseg/ng2-meta/issues"
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
@@ -33,7 +33,8 @@
     "@angular/common": "^2.0.0",
     "@angular/core": "^2.0.0",
     "@angular/platform-browser": "^2.0.0",
-    "@angular/router": "^3.0.0",
+    "@uirouter/angular": "^1.0.0-beta.7",
+    "@uirouter/core": "^5.0.5",
     "@types/node": "^6.0.38",
     "core-js": "^2.4.1",
     "rxjs": "^5.0.0-beta.12",

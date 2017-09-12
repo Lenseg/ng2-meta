@@ -1,6 +1,7 @@
 import { Inject, Injectable, Optional } from '@angular/core';
 import { Title, DOCUMENT } from '@angular/platform-browser';
-import { Router, NavigationEnd, Event as NavigationEvent, ActivatedRoute } from '@angular/router';
+import { UIRouter } from '@uirouter/angular';
+
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
 
@@ -11,25 +12,11 @@ const isDefined = (val: any) => typeof val !== 'undefined';
 
 @Injectable()
 export class MetaService {
-  constructor(private router: Router, @Inject(DOCUMENT) private document: any, private titleService: Title, private activatedRoute: ActivatedRoute,
+  constructor(private router: UIRouter, @Inject(DOCUMENT) private document: any, private titleService: Title,
               @Inject(META_CONFIG) private metaConfig: MetaConfig) {
-    this.router.events
-      .filter(event => (event instanceof NavigationEnd))
-      .map(() => this._findLastChild(this.activatedRoute))
-      .subscribe((routeData: any) => {
-        this._updateMetaTags(routeData.meta);
-      });
-  }
-
-  private _findLastChild(activatedRoute: ActivatedRoute) {
-    const snapshot = activatedRoute.snapshot;
-
-    let child = snapshot.firstChild;
-    while (child.firstChild !== null) {
-      child = child.firstChild;
-    }
-
-    return child.data;
+    this.router.transitionService.onStart({},this._updateMetaTags,{
+      bind:this
+    })
   }
 
   private _getOrCreateMetaTag(name: string): HTMLElement {
@@ -42,8 +29,8 @@ export class MetaService {
     return el;
   }
 
-  private _updateMetaTags(meta: any = {}) {
-
+  private _updateMetaTags(trs) {
+    let meta = trs.to().data.meta;
     if (meta.disableUpdate) {
       return false;
     }
