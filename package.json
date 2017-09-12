@@ -1,7 +1,7 @@
 {
-  "name": "ng2-meta",
+  "name": "ng2-ui-router-meta",
   "description": "Dynamic meta tags and SEO in Angular2 ui router",
-  "version": "2.0.3",
+  "version": "2.0.5",
   "scripts": {
     "lint": "tslint src/**/*.ts",
     "prepublish": "tsc",
@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/lenseg/ng2-meta"
+    "url": "https://github.com/lenseg/ng2-ui-router-meta"
   },
   "author": {
     "name": "Anton Stepanenkov",
@@ -24,21 +24,21 @@
   ],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/lenseg/ng2-meta/issues"
+    "url": "https://github.com/lenseg/ng2-ui-router-meta/issues"
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
   "dependencies": {
     "reflect-metadata": "^0.1.8",
-    "@angular/common": "^2.0.0",
-    "@angular/core": "^2.0.0",
-    "@angular/platform-browser": "^2.0.0",
+    "@angular/common": "^4.2.6",
+    "@angular/core": "^4.2.6",
+    "@angular/platform-browser": "^4.2.6",
     "@uirouter/angular": "^1.0.0-beta.7",
     "@uirouter/core": "^5.0.5",
     "@types/node": "^6.0.38",
     "core-js": "^2.4.1",
-    "rxjs": "^5.0.0-beta.12",
-    "zone.js": "^0.7.2"
+    "rxjs": "^5.4.2",
+    "zone.js": "^0.8.13"
   },
   "devDependencies": {
     "typescript": "^2.1.0-dev.20161017"

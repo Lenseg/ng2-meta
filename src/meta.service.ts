@@ -8,7 +8,7 @@ import 'rxjs/add/operator/map';
 import { META_CONFIG } from './meta.module';
 import { MetaConfig } from './models/meta-config';
 
-const isDefined = (val: any) => typeof val !== 'undefined';
+export function isDefined = (val: any) => typeof val !== 'undefined';
 
 @Injectable()
 export class MetaService {
@@ -30,7 +30,8 @@ export class MetaService {
   }
 
   private _updateMetaTags(trs) {
-    let meta = trs.to().data.meta;
+    let data = trs.to().data,
+    meta = data ? data.meta : {};
     if (meta.disableUpdate) {
       return false;
     }
@@ -52,7 +53,7 @@ export class MetaService {
     });
   }
 
-  setTitle(title?: string, titleSuffix?: string): MetaService {
+  public setTitle(title?: string, titleSuffix?: string): MetaService {
     const titleElement = this._getOrCreateMetaTag('title');
     const ogTitleElement = this._getOrCreateMetaTag('og:title');
     let titleStr = isDefined(title) ? title : (this.metaConfig.defaults['title'] || '');
@@ -66,7 +67,7 @@ export class MetaService {
     return this;
   }
 
-  setTag(tag: string, value: string): MetaService {
+  public setTag(tag: string, value: string): MetaService {
     if (tag === 'title' || tag === 'titleSuffix') {
       throw new Error(`Attempt to set ${tag} through 'setTag': 'title' and 'titleSuffix' are reserved tag names.
       Please use 'MetaService.setTitle' instead`);
