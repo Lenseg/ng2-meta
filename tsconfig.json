@@ -1,35 +1,35 @@
 {
-  "compilerOptions": {
-    "noImplicitAny": false,
-    "module": "commonjs",
-    "target": "es5",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "moduleResolution": "node",
-    "removeComments": true,
-    "sourceMap": true,
-    "declaration": true,
-    "outDir": "./dist",
-    "noLib": false,
-    "inlineSources": true,
-    "baseUrl": ".",
-    "noEmitOnError": false,
-    "rootDir": "./src",
-    "lib": [
-      "dom",
-      "es6"
+    "compilerOptions": {
+        "baseUrl": "",
+        "target": "es5",
+        "module": "es2015",
+        "moduleResolution": "node",
+        "declaration": true,
+        "noImplicitAny": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "skipLibCheck": true,
+        "typeRoots": ["./node_modules/@types"],
+        "types": [
+            "node"
+        ],
+        "lib": [
+            "dom",
+            "es2015"
+        ]
+    },
+    "compileOnSave": false,
+    "buildOnSave": false,
+    "exclude": [
+        "node_modules",
+        "dist",
+        "**/*.ngfactory.ts",
+        "**/*.shim.ts"
     ],
-    "types": [
-      "node"
-    ]
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ],
-  "angularCompilerOptions": {
-    "strictMetadataEmit": true
-  }
+    "angularCompilerOptions": {
+        "genDir": "tmp",
+        "entryModule": "src/lib/app.module#AppModule"
+    }
 }

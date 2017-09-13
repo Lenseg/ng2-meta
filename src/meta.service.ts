@@ -1,6 +1,6 @@
-import { Inject, Injectable, Optional } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { Title, DOCUMENT } from '@angular/platform-browser';
-import { UIRouter } from '@uirouter/angular';
+import { UIRouter, StateDeclaration } from '@uirouter/angular';
 
 import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/map';
@@ -8,13 +8,14 @@ import 'rxjs/add/operator/map';
 import { META_CONFIG } from './meta.module';
 import { MetaConfig } from './models/meta-config';
 
-export function isDefined = (val: any) => typeof val !== 'undefined';
+export function isDefined (val: any) { return typeof val !== 'undefined' };
 
 @Injectable()
 export class MetaService {
   constructor(private router: UIRouter, @Inject(DOCUMENT) private document: any, private titleService: Title,
               @Inject(META_CONFIG) private metaConfig: MetaConfig) {
-    this.router.transitionService.onStart({},this._updateMetaTags,{
+    this._updateMetaTags(this.router.globals.current);
+    this.router.transitionService.onStart({},(trs) => { this._updateMetaTags(trs.to()); },{
       bind:this
     })
   }
@@ -29,9 +30,11 @@ export class MetaService {
     return el;
   }
 
-  private _updateMetaTags(trs) {
-    let data = trs.to().data,
-    meta = data ? data.meta : {};
+  private _updateMetaTags(state?:StateDeclaration) {
+    let meta:any = {};
+    if(isDefined(state) && state.data){
+      meta = state.data.meta ? state.data.meta : meta;
+    }
     if (meta.disableUpdate) {
       return false;
     }

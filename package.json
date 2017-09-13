@@ -1,11 +1,13 @@
 {
   "name": "ng2-ui-router-meta",
   "description": "Dynamic meta tags and SEO in Angular2 ui router",
-  "version": "2.0.5",
+  "version": "2.0.16",
   "scripts": {
-    "lint": "tslint src/**/*.ts",
-    "prepublish": "tsc",
-    "tsc": "tsc"
+    "clean": "rimraf dist/",
+    "build:aot": "ngc -p tsconfig.json",
+    "build:jit": "tsc -p tsconfig.json",
+    "build": "npm run clean && npm run build:aot",
+    "start": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -28,19 +30,21 @@
   },
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
-  "dependencies": {
-    "reflect-metadata": "^0.1.8",
-    "@angular/common": "^4.2.6",
-    "@angular/core": "^4.2.6",
-    "@angular/platform-browser": "^4.2.6",
-    "@uirouter/angular": "^1.0.0-beta.7",
-    "@uirouter/core": "^5.0.5",
-    "@types/node": "^6.0.38",
-    "core-js": "^2.4.1",
-    "rxjs": "^5.4.2",
-    "zone.js": "^0.8.13"
+  "dependencies" : {
+    "@angular/core": ">=4.2.6",
+    "@angular/platform-browser": ">=4.2.6",
+    "@uirouter/angular": ">=1.0.0-beta.7",
+    "@angular/common": ">=4.2.6",
+    "@types/node": ">=6.0.38",
+    "core-js": ">=2.4.1",
+    "rxjs": ">=5.4.2",
+    "zone.js": ">=0.8.13"
   },
   "devDependencies": {
+    "@angular/cli": "^1.4.1",
+    "@angular/compiler": "^4.4.0-RC.0",
+    "@angular/compiler-cli": "^4.4.0-RC.0",
+    "@angular/platform-server": "^4.4.0-RC.0",
     "typescript": "^2.1.0-dev.20161017"
   },
   "engines": {
