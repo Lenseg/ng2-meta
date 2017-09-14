@@ -13,7 +13,7 @@ To install this library, run:
 $ npm install ng2-ui-router-meta --save
 ```
 
-ng2-ui-router-meta works with angular2 4.0.0 and ui-router 1.0.0 or higher.
+ng2-ui-router-meta works with angular 4.0.0 and ui-router 1.0.0 or higher.
 
 ### Modify views
 
