@@ -1,8 +1,6 @@
-# ng2-meta
+# ng2-ui-router-meta
 
-[![Join the chat at https://gitter.im/ng2-meta/Lobby](https://badges.gitter.im/ng2-meta/Lobby.svg)](https://gitter.im/ng2-meta/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
-Update HTML meta tags for title, description and others automatically based on the route in your Angular2 app.
+Update HTML meta tags for title, description and others automatically based on the state in your Angular2 app width ui-router.
 
 This is an Angular2 SEO/meta tags module. For the Angular 1.x module, check out [ngMeta](https://github.com/vinaygopinath/ngMeta)
 
@@ -12,43 +10,28 @@ This is an Angular2 SEO/meta tags module. For the Angular 1.x module, check out 
 To install this library, run:
 
 ```bash
-$ npm install ng2-meta --save
-```
-**Note**: If you're seeing errors about "duplicate identifiers", please install ng2-meta directly from GitHub until [#13](https://github.com/vinaygopinath/ng2-meta/issues/13) is resolved.
-```bash
-npm install --save vinaygopinath/ng2-meta
+$ npm install ng2-ui-router-meta --save
 ```
 
-ng2-meta works with angular2 2.0.0 and @angular/router 3.0.0 or higher.
+ng2-ui-router-meta works with angular2 4.0.0 and ui-router 1.0.0 or higher.
 
-### Modify routes
+### Modify views
 
-Add meta tags to routes. By default, `title` and `description` values are duplicated for `og:title` and `og:description`, so there's no need to add them separately.
+Add meta tags to states. By default, `title` and `description` values are duplicated for `og:title` and `og:description`, so there's no need to add them separately.
 <pre>
 <code>
-const routes: Routes = [
-  {
-    path: 'home',
-    component: HomeComponent,
-    <strong>data: {
-      meta: {
-        title: 'Home page',
-        description: 'Description of the home page'
-      }
-    }</strong>
+const forgotPassState = {
+  parent: 'app',
+  name: 'forgot-pass',
+  url: '/forgot-pass',
+  data:{
+    meta:{
+      title:'Password reset',
+      description:'Reset password via email.'
+    }
   },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    <strong>data: {
-      meta: {
-        title: 'Dashboard',
-        description: 'Description of the dashboard page',
-        'og:image': 'http://example.com/dashboard-image.png'
-      }
-    }</strong>
-  }
-];
+  component: ForgotPassComponent
+}
 </code>
 </pre>
 
@@ -57,7 +40,7 @@ const routes: Routes = [
 <pre>
 <code>
 ...
-<strong>import { MetaModule } from 'ng2-meta';</strong>
+<strong>import { MetaModule } from 'ng2-ui-router-meta';</strong>
 
 @NgModule({
   declarations: [
@@ -80,7 +63,7 @@ const routes: Routes = [
 
 <pre>
 <code>
-<strong>import { MetaService } from 'ng2-meta';</strong>
+<strong>import { MetaService } from 'ng2-ui-router-meta';</strong>
 
 @Component({
   ...
@@ -91,7 +74,7 @@ export class AppComponent {
 </code>
 </pre>
 
-You're all set! ng2-meta will update the meta tags whenever the route changes.
+You're all set! ng2-ui-router-meta will update the meta tags whenever the route changes.
 
 ## Options
 
@@ -99,7 +82,7 @@ You're all set! ng2-meta will update the meta tags whenever the route changes.
 
 Set default values for tags. These values are used when routes without `meta: {}` information are encountered.
 ```typescript
-import { MetaConfig, MetaService } from 'ng2-meta';
+import { MetaConfig, MetaService } from 'ng2-ui-router-meta';
 
 const metaConfig: MetaConfig = {
   //Append a title suffix such as a site name to all titles
@@ -163,7 +146,7 @@ While Google executes Javascript and extracts meta tags set by ng2-meta, many bo
 To generate all `*.js`, `*.js.map` and `*.d.ts` files:
 
 ```bash
-$ npm run tsc
+$ npm run build
 ```
 
 To lint all `*.ts` files:
@@ -171,7 +154,3 @@ To lint all `*.ts` files:
 ```bash
 $ npm run lint
 ```
-
-## Licence
-
-MIT © [Vinay Gopinath](http://vinaygopinath.me)
